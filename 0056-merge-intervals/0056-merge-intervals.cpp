@@ -25,15 +25,16 @@ public:
         // }
 
         for(int i=0;i<n;i++){
-            if(ans.empty()) ans.push_back(intervals[i]);
+            if(ans.empty() || intervals[i][0] > ans.back()[1]){
+                ans.push_back(intervals[i]);
+            } 
             else{
-                vector<int>&temp=ans.back();
-                if(intervals[i][0] <= temp[1]){
-                    temp[1]=max(temp[1],intervals[i][1]);
+                if(intervals[i][0] <=ans.back()[1]){
+                    ans.back()[1]=max(ans.back()[1],intervals[i][1]);
                 }
-                else{
-                    ans.push_back(intervals[i]);
-                }
+                // else{
+                //     ans.push_back(intervals[i]);
+                // }
             }
         }
         return ans;
