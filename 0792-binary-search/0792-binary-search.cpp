@@ -7,9 +7,9 @@ public:
         while(low<=high){
             if(nums[mid]==target) return mid;
             else if(nums[mid] > target){
-                high--;
+                high=mid-1;
             }else{
-                low++;
+                low=mid+1;
             }
             mid=(low+high)/2;
         }
