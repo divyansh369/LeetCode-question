@@ -5,7 +5,10 @@ public:
         int h=nums.size()-1;int mini=INT_MAX;
         int mid=(h+l)/2;
         while(l<=h){
-            
+            if(nums[l] <= nums[h]){
+                mini=min(nums[l],mini);
+                break;
+            }
             if(nums[l] <= nums[mid]){
                 mini=min(nums[l],mini);
                 l=mid+1;
