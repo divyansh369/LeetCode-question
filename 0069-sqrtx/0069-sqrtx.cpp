@@ -1,21 +1,31 @@
 class Solution {
 public:
-    int mySqrt(int x) {
-        if (x == 0)
-            return x;
-        int first = 1, last = x;
-        while (first <= last) {
-            int mid = first + (last - first) / 2;
-            // mid * mid == x gives runtime error
-            if (mid  == x / mid)
+    int binarysearch(int x){
+        vector<int>v;
+        int s=0;
+        long long int ans=-1;
+        int e=x;
+        long long int mid=s+(e-s)/2;;
+        while(s<=e){
+            long long int square=mid*mid;
+            
+            if(square==x){
                 return mid;
-            else if (mid > x / mid) {
-                last = mid - 1;
             }
-            else {
-                first = mid + 1;
+            else if(square < x){
+                ans=mid;
+                s=mid+1;
             }
+            else{
+                e=mid-1;
+            }
+            mid=s+(e-s)/2;
         }
-        return last;
+        return ans;
+    }
+    
+    int mySqrt(int x) {
+        return binarysearch(x);
+        
     }
 };
