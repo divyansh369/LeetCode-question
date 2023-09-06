@@ -7,13 +7,11 @@ public:
         int n1=nums1.size();
         int n2=nums2.size();
         int i=0;int j=0;
+        unordered_set<int>st;
         while(i<n1 && j<n2){
             if(nums1[i]==nums2[j]){
-                v.push_back(nums1[i]);
+                st.insert(nums1[i]);
                 i++;j++;
-                // while((v.back() == nums1[i] && v.back()==nums2[j]) && i<n1 && j<n2){
-                //     i++;j++;
-                // }
             }
             else if(nums1[i] > nums2[j]){
                 j++;
@@ -21,9 +19,6 @@ public:
                 i++;
             }
         }
-        unordered_set<int>st;
-        for(auto it:v) st.insert(it);
-        v.clear();
         for(auto it:st) v.push_back(it);
         return v;
     
