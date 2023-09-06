@@ -1,17 +1,23 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int n=nums.size(),farthest=0,left=0,right=0,jump=0;
-
-        while(farthest<n-1){
-            jump++;
-            for(int i=left;i<=right;i++){
-                farthest=max(farthest, i+nums[i]);
+        queue<int>q;
+        q.push(0);int jump=0;
+        unordered_set<int>vis = {0};
+        while(!q.empty()){
+            int size=q.size();
+            while(size--){
+                int ind=q.front();q.pop();
+                if(ind >= nums.size()-1) return jump;
+                for(int i=1;i<=nums[ind];i++){
+                    int newInd= i + ind;
+                    if(vis.count(newInd) ) continue;
+                    vis.insert(newInd);
+                    q.push(newInd);
+                }
             }
-            left=right+1;
-            right=farthest;
-
+            jump++;
         }
-        return jump;
+        return 0;
     }
 };
