@@ -15,5 +15,10 @@ public:
             fast=nums[fast];
         }
         return fast;
+
+        // return ans;
+    
+    
     }
+
 };
