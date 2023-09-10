@@ -5,13 +5,13 @@ public:
         vector<vector<int>>ans;
         sort(intervals.begin(),intervals.end());
         for(int i=0;i<n;i++){
-            int start=intervals[i][0];
-            int end=intervals[i][1];
-            if(ans.empty() || ans.back()[1] < start){
-                ans.push_back({start,end});
+            if(ans.empty() || ans.back()[1] < intervals[i][0]){
+                ans.push_back(intervals[i]);
             }
             else{
-                ans.back()[1]=max(ans.back()[1],end);
+                if(ans.back()[1] >= intervals[i][0]){
+                    ans.back()[1]=max(ans.back()[1],intervals[i][1]);
+                }
             }
         }
         return ans;
